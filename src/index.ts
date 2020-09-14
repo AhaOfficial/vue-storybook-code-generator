@@ -1,10 +1,12 @@
 export const useStorybook = ({
   component,
   componentName,
+  componentInner,
   CodeViewer,
 }: {
   component: { [name in string]: unknown }
   componentName: string
+  componentInner?: string
   CodeViewer: unknown
 }) => {
   let props = {}
@@ -14,7 +16,10 @@ export const useStorybook = ({
       for (const argumentName of Object.keys(props))
         propValues.push(`${argumentName}="${props[argumentName]}"`)
     } catch (e) {}
-    return `<${componentName} ${propValues.join(' ')}/>`
+    let template = `<${componentName} ${propValues.join(' ')}/>`
+    if(typeof componentInner == 'string' && componentInner.length > 0)
+      template = `<${componentName} ${propValues.join(' ')}>${componentInner}</${componentName}>`
+    return template
   }
   return {
     template: (args, { argTypes }) => {
@@ -24,7 +29,9 @@ export const useStorybook = ({
         for (const argumentName of Object.keys(props))
           propValues.push(`:${argumentName}="${argumentName}"`)
       } catch (e) {}
-      const template = `<${componentName} ${propValues.join(' ')}/>`
+      let template = `<${componentName} ${propValues.join(' ')}/>`
+      if(typeof componentInner == 'string'  && componentInner.length > 0)
+        template = `<${componentName} ${propValues.join(' ')}>${componentInner}</${componentName}>`
       return {
         props: Object.keys(argTypes),
         components: component,

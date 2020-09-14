@@ -1,7 +1,7 @@
 "use strict";
 exports.__esModule = true;
 exports.useStorybook = function (_a) {
-    var component = _a.component, componentName = _a.componentName, CodeViewer = _a.CodeViewer;
+    var component = _a.component, componentName = _a.componentName, componentInner = _a.componentInner, CodeViewer = _a.CodeViewer;
     var props = {};
     var generateCode = function () {
         var propValues = [];
@@ -12,7 +12,10 @@ exports.useStorybook = function (_a) {
             }
         }
         catch (e) { }
-        return "<" + componentName + " " + propValues.join(' ') + "/>";
+        var template = "<" + componentName + " " + propValues.join(' ') + "/>";
+        if (typeof componentInner == 'string' && componentInner.length > 0)
+            template = "<" + componentName + " " + propValues.join(' ') + ">" + componentInner + "</" + componentName + ">";
+        return template;
     };
     return {
         template: function (args, _a) {
@@ -27,6 +30,8 @@ exports.useStorybook = function (_a) {
             }
             catch (e) { }
             var template = "<" + componentName + " " + propValues.join(' ') + "/>";
+            if (typeof componentInner == 'string' && componentInner.length > 0)
+                template = "<" + componentName + " " + propValues.join(' ') + ">" + componentInner + "</" + componentName + ">";
             return {
                 props: Object.keys(argTypes),
                 components: component,

@@ -1,8 +1,9 @@
-export declare const useStorybook: ({ component, componentName, CodeViewer, }: {
+export declare const useStorybook: ({ component, componentName, componentInner, CodeViewer, }: {
     component: {
         [x: string]: unknown;
     };
     componentName: string;
+    componentInner?: string | undefined;
     CodeViewer: unknown;
 }) => {
     template: (args: any, { argTypes }: {

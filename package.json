@@ -1,6 +1,6 @@
 {
     "name": "vue-storybook-code-generator",
-    "version": "0.9.12",
+    "version": "0.9.14",
     "description": "",
     "scripts": {
         "build": "tsc",
