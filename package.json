@@ -1,0 +1,20 @@
+{
+    "name": "vue-storybook-code-generator",
+    "version": "0.9.12",
+    "description": "",
+    "scripts": {
+        "build": "tsc",
+        "clean": "rm -rf ./dist/*.*",
+        "lint": "prettier --config .prettierrc --write \"src/**/*.{ts,vue,css,json}\""
+    },
+    "main": "./dist/index.js",
+    "type": "./dist/index.d.ts",
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {},
+    "devDependencies": {
+        "@types/node": "^14.10.1",
+        "prettier": "^2.1.1"
+    }
+}
